@@ -1,0 +1,206 @@
+@use "sass:math";
+@use "variables" as *;
+@use "pivot" as *;
+@use "box" as *;
+
+.floor {
+  @include pivot;
+  transform: translateZ(-2px);
+}
+
+.floor__grass {
+  @include box(
+    $pivot-position-z: "top",
+    $depth: $grass-depth,
+    $height: $grass-size,
+    $width: $grass-size,
+    $texture: "ground.png",
+    $texture-position-default: 0 -641px,
+    $texture-position-top: 0 0,
+    $texture-position-bottom: 0 -345px
+  );
+  transform: translateZ(-$floor-depth - 40px);
+}
+
+.floor__section {
+  @include box(
+    $pivot-position-z: "top",
+    $depth: $floor-depth,
+    $height: $castle-size,
+    $width: math.div($castle-size, 5),
+    $texture: "castle.png",
+    $texture-position-default: 0 0,
+    $texture-position-front: -401px -724px,
+    $texture-position-back: -401px -724px,
+    $texture-position-left: 0 -643px,
+    $texture-position-right: 0 -643px
+  );
+  animation-duration: $animation-speed;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: $animation-delay;
+}
+
+.floor__section--teal {
+  @include box(
+    $pivot-position-z: "top",
+    $depth: $floor-depth,
+    $height: $castle-size,
+    $width: math.div($castle-size, 5),
+    $texture: "castle.png",
+    $texture-position-default: -81px 0,
+    $texture-position-front: 0 -805px,
+    $texture-position-back: 0 -805px,
+    $texture-position-left: 0 -724px,
+    $texture-position-right: 0 -724px
+  );
+}
+
+.floor__section--1 {
+  animation-name: floorSection1;
+  transform: translateX(
+      math.div($castle-size, 2) - math.div($floor-section-size, 2)
+    )
+    translateZ(-8px);
+}
+
+.floor__section--2 {
+  animation-name: floorSection2;
+  transform: translateX(
+      math.div($castle-size, 2) - math.div($floor-section-size, 2) -
+        $floor-section-size
+    )
+    translateZ(-20px);
+}
+
+.floor__section--3 {
+  animation-name: floorSection3;
+  transform: translateZ(-28px);
+}
+
+.floor__section--4 {
+  animation-name: floorSection4;
+  transform: translateX(
+      -(
+          math.div($castle-size, 2) - math.div($floor-section-size, 2) -
+            $floor-section-size
+        )
+    )
+    translateZ(-16px);
+}
+
+.floor__section--5 {
+  animation-name: floorSection5;
+  transform: translateX(
+      -(math.div($castle-size, 2) - math.div($floor-section-size, 2))
+    )
+    translateZ(-8px);
+}
+
+@keyframes floorSection1 {
+  0% {
+    transform: translateX(
+        math.div($castle-size, 2) - math.div($floor-section-size, 2)
+      )
+      translateZ(-8px);
+  }
+  50% {
+    transform: translateX(
+        math.div($castle-size, 2) - math.div($floor-section-size, 2)
+      )
+      translateZ(-0);
+  }
+  100% {
+    transform: translateX(
+        math.div($castle-size, 2) - math.div($floor-section-size, 2)
+      )
+      translateZ(-8px);
+  }
+}
+
+@keyframes floorSection2 {
+  0% {
+    transform: translateX(
+        math.div($castle-size, 2) - math.div($floor-section-size, 2) -
+          $floor-section-size
+      )
+      translateZ(-20px);
+  }
+  50% {
+    transform: translateX(
+        math.div($castle-size, 2) - math.div($floor-section-size, 2) -
+          $floor-section-size
+      )
+      translateZ(0);
+  }
+  100% {
+    transform: translateX(
+        math.div($castle-size, 2) - math.div($floor-section-size, 2) -
+          $floor-section-size
+      )
+      translateZ(-20px);
+  }
+}
+
+@keyframes floorSection3 {
+  0% {
+    transform: translateZ(-28px);
+  }
+  50% {
+    transform: translateZ(0);
+  }
+  100% {
+    transform: translateZ(-28px);
+  }
+}
+
+@keyframes floorSection4 {
+  0% {
+    transform: translateX(
+        -(
+            math.div($castle-size, 2) - math.div($floor-section-size, 2) -
+              $floor-section-size
+          )
+      )
+      translateZ(-16px);
+  }
+  50% {
+    transform: translateX(
+        -(
+            math.div($castle-size, 2) - math.div($floor-section-size, 2) -
+              $floor-section-size
+          )
+      )
+      translateZ(0);
+  }
+  100% {
+    transform: translateX(
+        -(
+            math.div($castle-size, 2) - math.div($floor-section-size, 2) -
+              $floor-section-size
+          )
+      )
+      translateZ(-16px);
+  }
+}
+
+@keyframes floorSection5 {
+  0% {
+    transform: translateX(
+        -(math.div($castle-size, 2) - math.div($floor-section-size, 2))
+      )
+      translateZ(-8px);
+  }
+  50% {
+    transform: translateX(
+        -(math.div($castle-size, 2) - math.div($floor-section-size, 2))
+      )
+      translateZ(0);
+  }
+  100% {
+    transform: translateX(
+        -(math.div($castle-size, 2) - math.div($floor-section-size, 2))
+      )
+      translateZ(-8px);
+  }
+}

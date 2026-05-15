@@ -1,0 +1,170 @@
+@use "variables" as *;
+@use "pivot" as *;
+@use "box" as *;
+
+.steve {
+  @include pivot;
+  animation: steve $animation-speed infinite ease-in-out $animation-delay;
+  transform: translateZ(18px);
+}
+
+.steve__head {
+  @include box(
+    $pivot-position-z: "bottom",
+    $depth: 32px,
+    $height: 32px,
+    $width: 32px,
+    $shadow-bottom: false,
+    $texture: "steve.png",
+    $texture-position-default: -33px -102px,
+    $texture-position-back: -37px -53px,
+    $texture-position-left: 0 -102px,
+    $texture-position-right: -70px -53px
+  );
+  animation: steveHead $animation-speed infinite ease-in-out $animation-delay;
+  transform: translateZ(54px);
+}
+
+.steve__body {
+  @include box(
+    $pivot-position-z: "top",
+    $depth: 48px,
+    $height: 24px,
+    $width: 32px,
+    $shadow-bottom: false,
+    $texture: "steve.png",
+    $texture-position-default: -2px -53px,
+    $texture-position-top: -2px -65px,
+    $texture-position-bottom: -2px -65px,
+    $texture-position-back: -36px 0,
+    $texture-position-left: -6px -53px,
+    $texture-position-right: -6px -53px
+  );
+  transform: translateZ(52px);
+}
+
+.steve__leg {
+  @include box(
+    $pivot-position-z: "top",
+    $depth: 52px,
+    $height: 16px,
+    $width: 16px,
+    $texture: "steve.png",
+    $texture-position-default: -17px 0,
+    $texture-position-top: -17px -18px,
+    $texture-position-bottom: -17px -18px
+  );
+  animation-duration: $animation-speed;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: $animation-delay;
+}
+
+.steve__arm {
+  @include box(
+    $pivot-position-z: "top",
+    $depth: 52px,
+    $height: 16px,
+    $width: 16px,
+    $shadow-bottom: false,
+    $texture: "steve.png",
+    $texture-position-default: 0 0,
+    $texture-position-top: 0 0,
+    $texture-position-bottom: 0 -18px
+  );
+  animation-duration: $animation-speed;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: $animation-delay;
+}
+
+.steve__arm--left {
+  animation-name: steveArmLeft;
+  transform: translateX(-24px) translateZ(48px);
+}
+.steve__arm--right {
+  animation-name: steveArmRight;
+  transform: translateX(24px) translateZ(48px);
+}
+
+.steve__leg--left {
+  animation-name: steveLegLeft;
+  transform: translateX(-8px);
+}
+
+.steve__leg--right {
+  animation-name: steveLegRight;
+  transform: translateX(8px);
+}
+
+@keyframes steve {
+  0% {
+    transform: translateZ(18px);
+  }
+  50% {
+    transform: translateZ(128px);
+  }
+  100% {
+    transform: translateZ(18px);
+  }
+}
+
+@keyframes steveHead {
+  0% {
+    transform: translateZ(54px) rotateX(0);
+  }
+  50% {
+    transform: translateZ(54px) rotateX(-8deg);
+  }
+  100% {
+    transform: translateZ(54px) rotateX(0);
+  }
+}
+
+@keyframes steveArmLeft {
+  0% {
+    transform: translateX(-24px) translateZ(48px) rotateY(0);
+  }
+  50% {
+    transform: translateX(-24px) translateZ(48px) rotateY(40deg);
+  }
+  100% {
+    transform: translateX(-24px) translateZ(48px) rotateY(0);
+  }
+}
+
+@keyframes steveArmRight {
+  0% {
+    transform: translateX(24px) translateZ(48px) rotateY(0);
+  }
+  50% {
+    transform: translateX(24px) translateZ(48px) rotateY(-40deg);
+  }
+  100% {
+    transform: translateX(24px) translateZ(48px) rotateY(0);
+  }
+}
+
+@keyframes steveLegLeft {
+  0% {
+    transform: translateX(-8px) rotateY(0);
+  }
+  50% {
+    transform: translateX(-8px) rotateY(20deg);
+  }
+  100% {
+    transform: translateX(-8px) rotateY(0);
+  }
+}
+
+@keyframes steveLegRight {
+  0% {
+    transform: translateX(8px) rotateY(0);
+  }
+  50% {
+    transform: translateX(8px) rotateY(-20deg);
+  }
+  100% {
+    transform: translateX(8px) rotateY(0);
+  }
+}

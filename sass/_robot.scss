@@ -1,0 +1,44 @@
+@use "variables" as *;
+@use "box" as *;
+
+.robot {
+  @include box(
+    $pivot-position-z: "bottom",
+    $depth: 27px,
+    $height: 54px,
+    $width: 27px,
+    $shadow-bottom: false,
+    $texture: "robot.png",
+    $texture-position-top: 0 0,
+    $texture-position-front: -28px 0,
+    $texture-position-back: -28px 0,
+    $texture-position-left: 0 -55px,
+    $texture-position-right: 0 -55px
+  );
+  animation: robot $animation-speed infinite ease-in-out $animation-delay;
+  transform: translateY(-100px) translateX(100px) translateZ(-20px)
+    rotateZ(45deg);
+
+  .face-bottom {
+    height: 78px;
+    width: 51px;
+    background-image: url("../textures/robot-bottom.gif");
+    background-position: center;
+    background-size: cover;
+    transform: translate3d(-50%, -50%, 13px);
+  }
+}
+
+@keyframes robot {
+  0% {
+    transform: translateY(-100px) translateX(100px) translateZ(-20px)
+      rotateZ(45deg);
+  }
+  50% {
+    transform: translateY(-100px) translateX(100px) translateZ(0) rotateZ(45deg);
+  }
+  100% {
+    transform: translateY(-100px) translateX(100px) translateZ(-20px)
+      rotateZ(45deg);
+  }
+}
