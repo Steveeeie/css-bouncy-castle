@@ -1,6 +1,7 @@
 {
   "name": "css-bouncy-castle",
   "version": "2.0.0",
+  "packageManager": "pnpm@10.29.2",
   "description": "An animated 3D bouncy castle created with just HTML and CSS.",
   "type": "module",
   "scripts": {
